@@ -53,7 +53,7 @@ CREATE TABLE invitation (
 CREATE TABLE user_list (
     user_id INTEGER,
     list_id INTEGER,
-    PRIMARY KEY (user_id, list_id, user_admin_id),
+    PRIMARY KEY (user_id, list_id),
     FOREIGN KEY (user_id) REFERENCES user (user_id),
     FOREIGN KEY (list_id) REFERENCES to_do_list (list_id)
 );
