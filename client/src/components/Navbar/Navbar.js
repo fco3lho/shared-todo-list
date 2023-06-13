@@ -1,15 +1,47 @@
 import { NavLink } from "react-router-dom";
 
+//Contexts
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+
 const Navbar = () => {
+  const { isLoggedIn, whoIs, Offline } = useContext(UserContext);
+
   return (
     <div>
-      <NavLink to="/">Home</NavLink>
+      <ul>
+        {isLoggedIn && <li>Bem vindo, {whoIs}</li>}
 
-      <NavLink to="/login">Login</NavLink>
+        {isLoggedIn && (
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+        )}
 
-      <NavLink to="/register">Register</NavLink>
+        {!isLoggedIn && (
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+        )}
 
-      <NavLink to="/about">About</NavLink>
+        {!isLoggedIn && (
+          <li>
+            <NavLink to="/register">Register</NavLink>
+          </li>
+        )}
+
+        <li>
+          <NavLink to="/about">About</NavLink>
+        </li>
+
+        {isLoggedIn && (
+          <li>
+            <NavLink to="/login" onClick={Offline}>
+              Sair
+            </NavLink>
+          </li>
+        )}
+      </ul>
     </div>
   );
 };
