@@ -13,6 +13,10 @@ app.use(express.json());
 //Conexão com o banco de dados
 const db = require("./config/database").databaseConnection;
 
+// Importando rotas
+const createToDoList = require("./routes/createToDo");
+const task = require("./routes/task");
+
 //Register
 app.post("/register", async (req, res) => {
   const { name, username, password, phone, email } = await req.body;
@@ -77,6 +81,12 @@ app.post("/logout", (req, res) => {
     res.status(500).send("Houve um erro interno no servidor.");
   }
 });
+
+// criar uma To-Do List
+app.use("/createToDoList", createToDoList)
+
+// Manipular tarefas de uma To-Do List
+app.use("/task", task)
 
 //Listening port
 app.listen(port, () => {

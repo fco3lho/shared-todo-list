@@ -17,24 +17,25 @@ CREATE TABLE user (
 );
 
 CREATE TABLE to_do_list (
-    list_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(32) NOT NULL,
-    create_date DATETIME NOT NULL,
-    last_mod DATETIME NOT NULL,
-    user_last_mod_id INTEGER,
-    user_admin_id INTEGER NOT NULL,
+    list_id INTEGER PRIMARY KEY AUTO_INCREMENT, 
+    name VARCHAR(32) NOT NULL, -- receber
+    create_date DATETIME NOT NULL, -- NOW
+    last_mod DATETIME,
+    user_last_mod_id INTEGER, 
+    user_admin_id INTEGER NOT NULL, -- receber
     FOREIGN KEY (user_last_mod_id) REFERENCES user (user_id),
     FOREIGN KEY (user_admin_id) REFERENCES user (user_id)
 );
 
 CREATE TABLE task (
     task_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    description VARCHAR(128) NOT NULL,
-    register_date DATETIME NOT NULL,
-    expire_date DATETIME NOT NULL,
-    completed BOOL NOT NULL,
-    user_id_created INTEGER NOT NULL,
-    list_id INTEGER NOT NULL,
+    name VARCHAR(32) NOT NULL, -- receber
+    description VARCHAR(128) NOT NULL, -- receber
+    register_date DATETIME NOT NULL, -- NOW
+    expire_date DATETIME NOT NULL, -- receber
+    completed BOOL NOT NULL, -- false
+    user_id_created INTEGER NOT NULL, -- receber
+    list_id INTEGER NOT NULL, -- params
     FOREIGN KEY (user_id_created) REFERENCES user (user_id),
     FOREIGN KEY (list_id) REFERENCES to_do_list (list_id)
 );
