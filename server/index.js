@@ -1,6 +1,7 @@
 //Importando dependências
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser")
 const bcrypt = require("bcrypt");
 const nodeCrypto = require("node:crypto");
 
@@ -9,6 +10,10 @@ const port = 3001;
 
 app.use(cors());
 app.use(express.json());
+
+//Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //Conexão com o banco de dados
 const db = require("./config/database").databaseConnection;
@@ -83,7 +88,7 @@ app.post("/logout", (req, res) => {
 });
 
 // criar uma To-Do List
-app.use("/createToDoList", createToDoList)
+app.use("/", createToDoList)
 
 // Manipular tarefas de uma To-Do List
 app.use("/task", task)
