@@ -4,10 +4,15 @@ import styles from "./Tasks.module.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+//Components
+import Cards from "../../../components/CardsTasks/CardsTasks";
+
 //Axios
 import Axios from "axios";
 
 const Tasks = () => {
+  const [tasks, setTasks] = useState();
+
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
   const [expireDate, setExpireDate] = useState("");
@@ -24,7 +29,7 @@ const Tasks = () => {
     setError("");
     setMessage("");
 
-    console.log(taskName, description, expireDate, id)
+    console.log(taskName, description, expireDate, id);
 
     Axios.post("http://localhost:3001/task/create", {
       taskName: taskName,
@@ -65,7 +70,7 @@ const Tasks = () => {
     <>
       <div>
         <form onSubmit={handleSubmit}>
-        <label>
+          <label>
             <span>Nome:</span>
             <input
               type="text"
@@ -104,7 +109,24 @@ const Tasks = () => {
         {showMessage && error && <p className="error">{error}</p>}
       </div>
 
-      <div>Hello</div>
+      <div>
+        {typeof tasks !== "undefined" &&
+          tasks.map((value) => {
+            return (
+              <Cards
+                key={value.task_id}
+                listCard={tasks}
+                setListCard={setTasks}
+                task_id={value.task_id}
+                taskName={value.taskName}
+                description={value.description}
+                register_date={value.register_date}
+                expire_date={value.expire_date}
+                completed={value.completed}
+              />
+            );
+          })}
+      </div>
     </>
   );
 };
