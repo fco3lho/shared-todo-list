@@ -11,6 +11,7 @@ import About from "./pages/About/About";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import MyToDoLists from "./pages/MyToDoLists/MyToDoLists";
+import Tasks from "./pages/MyToDoLists/Tasks/Tasks";
 
 //Contexts
 import { UserProvider } from "./contexts/UserContext";
@@ -24,6 +25,7 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<MyToDoLists />} />
+              <Route path="/:id/tasks" element={<Tasks/>}/>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/about" element={<About />} />
