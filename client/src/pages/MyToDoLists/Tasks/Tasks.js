@@ -26,7 +26,7 @@ const Tasks = () => {
 
     console.log(taskName, description, expireDate, id)
 
-    Axios.post("http://localhost:3001/createTask", {
+    Axios.post("http://localhost:3001/task/create", {
       taskName: taskName,
       description: description,
       expireDate: expireDate,
