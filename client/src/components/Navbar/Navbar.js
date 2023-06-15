@@ -14,7 +14,7 @@ const Navbar = () => {
 
         {isLoggedIn && (
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">Listas de tarefas</NavLink>
           </li>
         )}
 

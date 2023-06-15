@@ -2,6 +2,20 @@ const express = require("express");
 const router = express.Router();
 const db = require("../../config/database").databaseConnection;
 
+router.get("/", (req, res) => {
+  const sql = "SELECT * FROM to_do_list";
+
+  db.query(sql, (error, result) => {
+    if(error){
+      res.status(500).send("Ocorreu um erro interno do servidor!");
+      console.log(error);
+      return;
+    }
+
+    res.status(200).send(result);
+  })
+});
+
 router.post("/create", (req, res) => {
   const { name, username_admin } = req.body;
 

@@ -7,10 +7,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 
 //Pages
-import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import MyToDoLists from "./pages/MyToDoLists/MyToDoLists";
 
 //Contexts
 import { UserProvider } from "./contexts/UserContext";
@@ -23,7 +23,7 @@ function App() {
           <Navbar />
           <div className="container">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<MyToDoLists />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/about" element={<About />} />
