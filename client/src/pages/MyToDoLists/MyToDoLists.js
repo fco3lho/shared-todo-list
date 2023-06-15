@@ -42,10 +42,12 @@ const MyToDoLists = () => {
   };
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/").then((response) =>
-      setLists(response.data)
-    );
-  }, []);
+    if (whoIs) {
+      Axios.get(`http://localhost:3001/${whoIs}`)
+        .then((response) => setLists(response.data))
+        .catch((error) => console.log(error.response.data));
+    }
+  }, [whoIs]);
 
   useEffect(() => {
     if (showMessage) {
