@@ -7,7 +7,7 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 
 //Components
-import Cards from "../../components/Cards/Cards";
+import Cards from "../../components/CardsList/CardsList";
 
 //Context
 import { useContext } from "react";

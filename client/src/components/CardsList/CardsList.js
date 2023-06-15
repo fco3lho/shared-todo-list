@@ -1,11 +1,7 @@
-import styles from "./Cards.module.css";
-
-//Axios
-import Axios from "axios";
+import styles from "./CardsList.module.css";
 
 //Hooks
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Cards = (props) => {
 
