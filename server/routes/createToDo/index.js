@@ -57,4 +57,47 @@ router.post("/create", (req, res) => {
   });
 });
 
+router.delete(`/delete/:list_id`, (req, res) => {
+  const { list_id } = req.params;
+
+  const tableUserList = "DELETE FROM user_list WHERE list_id = ?";
+  const tableInvitation = "DELETE FROM invitation WHERE id_todo_list = ?";
+  const tableTask = "DELETE FROM task WHERE list_id = ?";
+  const tableToDoList = "DELETE FROM to_do_list WHERE list_id = ?";
+
+  db.query(tableUserList, [list_id], (err1, res1) => {
+    if (err1) {
+      res.status(500).send("Erro ao excluir pelada.");
+      console.log("Erro ao excluir pelada.");
+      return;
+    } else {
+      db.query(tableInvitation, [list_id], (err2, res2) => {
+        if (err2) {
+          res.status(500).send("Erro ao excluir pelada.");
+          console.log("Erro ao excluir pelada.");
+          return;
+        } else {
+          db.query(tableTask, [list_id], (err3, res3) => {
+            if (err3) {
+              res.status(500).send("Erro ao excluir pelada.");
+              console.log("Erro ao excluir pelada.");
+              return;
+            } else {
+              db.query(tableToDoList, [list_id], (err4, res4) => {
+                if (err4) {
+                  res.status(500).send("Erro ao excluir pelada.");
+                  console.log("Erro ao excluir pelada.");
+                  return;
+                } else {
+                  res.status(200).send("Lista excluída.");
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  });
+});
+
 module.exports = router;
