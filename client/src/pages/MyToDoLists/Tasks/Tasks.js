@@ -17,7 +17,7 @@ import Axios from "axios";
 const Tasks = () => {
   const [tasks, setTasks] = useState();
 
-  const [taskName, setTaskName] = useState("");
+  const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [expireDate, setExpireDate] = useState("");
   const { id } = useParams();
@@ -36,7 +36,7 @@ const Tasks = () => {
     setMessage("");
 
     Axios.post("http://localhost:3001/task/create", {
-      taskName: taskName,
+      name: name,
       description: description,
       expireDate: expireDate,
       listID: id,
@@ -71,6 +71,12 @@ const Tasks = () => {
     }
   }, [showMessage]);
 
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/task/myTasks/${id}`)
+      .then((response) => setTasks(response.data))
+      .catch((error) => console.log(error.response.data));
+  }, [tasks]);
+
   return (
     <>
       <div>
@@ -79,11 +85,11 @@ const Tasks = () => {
             <span>Nome:</span>
             <input
               type="text"
-              name="taskName"
+              name="name"
               maxLength={32}
               required
-              value={taskName}
-              onChange={(e) => setTaskName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </label>
           <label>
@@ -123,7 +129,7 @@ const Tasks = () => {
                 listCard={tasks}
                 setListCard={setTasks}
                 task_id={value.task_id}
-                taskName={value.taskName}
+                name={value.name}
                 description={value.description}
                 register_date={value.register_date}
                 expire_date={value.expire_date}

@@ -48,7 +48,21 @@ router.post("/create", (req, res) => {
 });
 
 // Read
-router.get("/myTasks");
+router.get("/myTasks/:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = "SELECT * FROM task WHERE list_id = ?";
+
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      res.status(500).send("Ocorreu um erro interno do servidor!");
+      console.log(err);
+      return;
+    }
+
+    res.status(200).send(result);
+  });
+});
 
 // Update
 

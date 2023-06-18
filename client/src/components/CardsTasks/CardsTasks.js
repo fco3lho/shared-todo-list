@@ -3,6 +3,7 @@ import styles from "./CardsTasks.module.css";
 const CardsTasks = (props) => {
   return <>
     <div>
+      <p>ID: {props.task_id}</p>
       <p>Tarefa: {props.taskName}</p>
       <p>Descrição: {props.description}</p>
       <p>Data de criação: {props.register_date}</p>

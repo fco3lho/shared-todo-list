@@ -47,7 +47,7 @@ const MyToDoLists = () => {
         .then((response) => setLists(response.data))
         .catch((error) => console.log(error.response.data));
     }
-  }, [whoIs]);
+  }, [lists]);
 
   useEffect(() => {
     if (showMessage) {
