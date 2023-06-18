@@ -2,42 +2,55 @@ const express = require("express");
 const router = express.Router();
 const db = require("../../config/database").databaseConnection;
 
-function datetimeLocal_to_datetime (datetimelocal) {
-    if (datetimelocal.length == 15) {
-        datetimelocal = datetimelocal.substring(0, 8) + '0' + datetimelocal.substring(8)
-    }
-  
-    datetimelocal = datetimelocal.substring(0, 10) + ' ' + datetimelocal.substring(11) + ':00'
-    return datetimelocal
-}
+function datetimeLocal_to_datetime(datetimelocal) {
+  if (datetimelocal.length == 15) {
+    datetimelocal =
+      datetimelocal.substring(0, 8) + "0" + datetimelocal.substring(8);
+  }
 
+  datetimelocal =
+    datetimelocal.substring(0, 10) + " " + datetimelocal.substring(11) + ":00";
+  return datetimelocal;
+}
 
 // Create
 router.post("/create", (req, res) => {
-    const { name, description, expire_date, user_id_created ,list_id } = req.body;
-    
-    // transformar expire_date para DATETIME user EXPIRE_DATETIME
-    const expire_datetime = datetimeLocal_to_datetime(expire_date);
+  const { taskName, description, expireDate, listID, username } = req.body;
 
-    const sql =
-    "INSERT INTO task (name, description, register_date, expire_date, completed, user_id_created, list_id) VALUES (?, ?, NOW(), ?, false, ?, ?)"
+  // transformar expire_date para DATETIME user EXPIRE_DATETIME
+  const expireDatetime = datetimeLocal_to_datetime(expireDate);
 
-    db.query(sql, [name, description, expire_datetime, user_id_created, list_id], (err, result) => {
-        if (err) {
+  const sql =
+    "INSERT INTO task (name, description, register_date, expire_date, completed, user_id_created, list_id) VALUES (?, ?, NOW(), ?, false, ?, ?)";
+  const verifyUser = "SELECT user_id FROM user WHERE username = ?";
+
+  db.query(verifyUser, [username], (err1, result1) => {
+    if (err1) {
+      res.status(500).send("Ocorreu um erro interno do servidor.");
+      console.log(err1);
+      return;
+    } else {
+      db.query(
+        sql,
+        [taskName, description, expireDatetime, result1[0].user_id, listID],
+        (err2, result2) => {
+          if (err2) {
             res.status(500).send("Ocorreu um erro interno do servidor.");
-            console.log(err);
+            console.log(err2);
             return;
+          } else {
+            res.status(200).send("Tarefa cadastrada com sucesso!");
+          }
         }
-
-        res.status(200).send("Task criada com sucesso!")
-    })
-})
+      );
+    }
+  });
+});
 
 // Read
-router.get("/myTasks")
+router.get("/myTasks");
 
 // Update
-
 
 // Delete
 

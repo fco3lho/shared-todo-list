@@ -7,6 +7,10 @@ import { useParams } from "react-router-dom";
 //Components
 import Cards from "../../../components/CardsTasks/CardsTasks";
 
+//Context
+import { useContext } from "react";
+import { UserContext } from "../../../contexts/UserContext";
+
 //Axios
 import Axios from "axios";
 
@@ -23,19 +27,20 @@ const Tasks = () => {
   const [error, setError] = useState("");
   const [showMessage, setShowMessage] = useState(false);
 
+  const { whoIs } = useContext(UserContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     setError("");
     setMessage("");
 
-    console.log(taskName, description, expireDate, id);
-
     Axios.post("http://localhost:3001/task/create", {
       taskName: taskName,
       description: description,
       expireDate: expireDate,
-      list_id: id,
+      listID: id,
+      username: whoIs,
     })
       .then((response) => setMessage(response.data))
       .catch((error) => setError(error.response.data));
