@@ -120,7 +120,7 @@ const Tasks = () => {
         {showMessage && error && <p className="error">{error}</p>}
       </div>
 
-      <div>
+      <div className={styles.tasks}>
         {typeof tasks !== "undefined" &&
           tasks.map((value) => {
             return (

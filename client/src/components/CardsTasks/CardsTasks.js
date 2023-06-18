@@ -2,7 +2,7 @@ import styles from "./CardsTasks.module.css";
 
 const CardsTasks = (props) => {
   return <>
-    <div>
+    <div className={styles.cardContainer}>
       <p>ID: {props.task_id}</p>
       <p>Tarefa: {props.taskName}</p>
       <p>Descrição: {props.description}</p>
