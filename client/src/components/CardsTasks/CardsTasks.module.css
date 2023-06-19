@@ -10,3 +10,9 @@
   border-radius: 0.5em;
   box-shadow: 0.6em 0.6em 0.6em rgba(0, 0, 0, 0.389);
 }
+
+.cardContainer div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -65,6 +65,37 @@ router.get("/myTasks/:id", (req, res) => {
 });
 
 // Update
+router.put("/myTasks/completTask/:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = "UPDATE task SET completed = 1 WHERE task_id = ?";
+
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      res.status(500).send("Ocorreu um erro interno do servidor!");
+      console.log(err);
+      return;
+    }
+
+    res.status(200).send("1");
+  });
+});
+
+router.put("/myTasks/incompletTask/:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = "UPDATE task SET completed = 0 WHERE task_id = ?";
+
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      res.status(500).send("Ocorreu um erro interno do servidor!");
+      console.log(err);
+      return;
+    }
+
+    res.status(200).send("0");
+  });
+});
 
 // Delete
 
