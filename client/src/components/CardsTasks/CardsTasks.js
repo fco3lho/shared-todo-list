@@ -11,52 +11,29 @@ const CardsTasks = (props) => {
   const [taskName, setTaskName] = useState(props.taskName);
   const [description, setDescription] = useState(props.description);
   const [expire_date, setExpireDate] = useState(props.expire_date);
-  const [completed, setCompleted] = useState(props.completed);
+  const [isChecked, setIsChecked] = useState(props.completed);
 
   const [verifyEdit, setVerifyEdit] = useState(false);
+
+  const handleCheckboxChange = () => {
+    if (isChecked === 0) {
+      setIsChecked(1)
+    } else if (isChecked === 1){
+      setIsChecked(0)
+    }
+
+    Axios.put("http://localhost:3001/task/myTasks/checkbox", {
+      task_id: task_id,
+      completed: isChecked,
+    })
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error.response.data));
+  };
 
   const handleEdit = (e) => {
     e.preventDefault();
 
-    Axios.put("http://localhost:3001/task/myTasks/editTask", {
-      task_id: task_id,
-      taskName: taskName,
-      description: description,
-      expire_date: expire_date,
-    })
-      .then((response) => {
-        props.setListCard(
-          props.listCard.map((value) => {
-            return value.task_id === task_id
-              ? {
-                  task_id: task_id,
-                  taskName: taskName,
-                  description: description,
-                  expire_date: expire_date,
-                }
-              : value;
-           })
-         );
-      })
-      .catch((error) => console.log(error.response.data));
-
-    setVerifyEdit(false);
-  };
-
-  const handleCompletTask = (e) => {
-    e.preventDefault();
-
-    Axios.put(`http://localhost:3001/task/myTasks/completTask/${task_id}`)
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error.response.data));
-  };
-
-  const handleIncompletTask = (e) => {
-    e.preventDefault();
-
-    Axios.put(`http://localhost:3001/task/myTasks/incompletTask/${task_id}`)
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error.response.data));
+    console.log("handleEdit");
   };
 
   return (
@@ -68,25 +45,11 @@ const CardsTasks = (props) => {
         <p>Data de criação: {props.register_date}</p>
         <p>Data de expiração: {props.expire_date}</p>
         <div>
-          {props.completed === 1 && (
-            <input
-              type="checkbox"
-              id="completed"
-              name="completed"
-              onChange={(e) => setCompleted(e.target.value)}
-              onClick={handleIncompletTask}
-              checked
-            />
-          )}
-          {props.completed === 0 && (
-            <input
-              type="checkbox"
-              id="completed"
-              name="completed"
-              onChange={(e) => setCompleted(e.target.value)}
-              onClick={handleCompletTask}
-            />
-          )}
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={handleCheckboxChange}
+          />
           <label htmlFor="completed">Feita</label>
         </div>
         <button onClick={() => setVerifyEdit(true)}>Editar</button>
@@ -98,28 +61,40 @@ const CardsTasks = (props) => {
           <input
             type="text"
             id="name"
+            label="Nome da tarefa"
             defaultValue={props.taskName}
-            onChange={(e) => setTaskName(e.target.value)}
+            onChange={(e) => {
+              setTaskName(e.target.value);
+            }}
             name="name"
             required
           />
           <input
             type="text"
             id="description"
+            label="Descrição"
             defaultValue={props.description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
             name="description"
             required
           />
           <input
             type="datetime-local"
             id="expireDate"
+            label="Data de expiração"
             defaultValue={props.expire_date}
-            onChange={(e) => setExpireDate(e.target.value)}
+            onChange={(e) => {
+              setExpireDate(e.target.value);
+            }}
             name="expire_date"
             required
           />
           <button>Editar</button>
+          <a href="#" onClick={() => setVerifyEdit(false)}>
+            Cancelar
+          </a>
         </form>
       )}
     </>

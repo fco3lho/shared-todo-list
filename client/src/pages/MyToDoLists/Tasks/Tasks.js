@@ -29,9 +29,7 @@ const Tasks = () => {
 
   const { whoIs } = useContext(UserContext);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
     setError("");
     setMessage("");
 
@@ -75,7 +73,7 @@ const Tasks = () => {
     Axios.get(`http://localhost:3001/task/myTasks/${id}`)
       .then((response) => setTasks(response.data))
       .catch((error) => console.log(error));
-  }, []);
+  }, [setTasks]);
 
   return (
     <>

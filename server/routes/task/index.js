@@ -66,14 +66,18 @@ router.get("/myTasks/:id", (req, res) => {
 
 // Update
 router.put("/myTasks/editTask", (req, res) => {
-  const { task_id, taskName, description, expire_date } = req.body;
+  const { task_id, taskName, description, expire_date, completed } = req.body;
+
+  const expireDatetime = datetimeLocal_to_datetime(expire_date);
+
+  console.log({ task_id, taskName, description, expireDatetime, completed });
 
   const sql =
-    "UPDATE task SET name = ?, description = ?, expire_date = ? WHERE task_id = ?";
+    "UPDATE task SET name = ?, description = ?, expire_date = ?, completed = ? WHERE task_id = ?";
 
   db.query(
     sql,
-    [taskName, description, expire_date, task_id],
+    [taskName, description, expireDatetime, completed, task_id],
     (err, result) => {
       if (err) {
         res.status(500).send("Ocorreu um erro interno do servidor!");
@@ -86,35 +90,26 @@ router.put("/myTasks/editTask", (req, res) => {
   );
 });
 
-router.put("/myTasks/completTask/:id", (req, res) => {
-  const { id } = req.params;
+router.put("/myTasks/checkbox", (req, res) => {
+  const { task_id, completed } = req.body;
 
-  const sql = "UPDATE task SET completed = 1 WHERE task_id = ?";
+  let repairCompleted;
+  if (completed === 0) {
+    repairCompleted = 1;
+  } else if (completed === 1) {
+    repairCompleted = 0;
+  }
 
-  db.query(sql, [id], (err, result) => {
+  const sql = "UPDATE task SET completed = ? WHERE task_id = ?";
+
+  db.query(sql, [repairCompleted, task_id], (err, result) => {
     if (err) {
       res.status(500).send("Ocorreu um erro interno do servidor!");
       console.log(err);
       return;
     }
 
-    res.status(200).send("1");
-  });
-});
-
-router.put("/myTasks/incompletTask/:id", (req, res) => {
-  const { id } = req.params;
-
-  const sql = "UPDATE task SET completed = 0 WHERE task_id = ?";
-
-  db.query(sql, [id], (err, result) => {
-    if (err) {
-      res.status(500).send("Ocorreu um erro interno do servidor!");
-      console.log(err);
-      return;
-    }
-
-    res.status(200).send("0");
+    res.status(200).send("Tarefa alterada com sucesso");
   });
 });
 
