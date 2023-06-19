@@ -65,6 +65,27 @@ router.get("/myTasks/:id", (req, res) => {
 });
 
 // Update
+router.put("/myTasks/editTask", (req, res) => {
+  const { task_id, taskName, description, expire_date } = req.body;
+
+  const sql =
+    "UPDATE task SET name = ?, description = ?, expire_date = ? WHERE task_id = ?";
+
+  db.query(
+    sql,
+    [taskName, description, expire_date, task_id],
+    (err, result) => {
+      if (err) {
+        res.status(500).send("Ocorreu um erro interno do servidor!");
+        console.log(err);
+        return;
+      }
+
+      res.status(200).send(result);
+    }
+  );
+});
+
 router.put("/myTasks/completTask/:id", (req, res) => {
   const { id } = req.params;
 

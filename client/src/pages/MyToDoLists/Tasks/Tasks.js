@@ -74,8 +74,8 @@ const Tasks = () => {
   useEffect(() => {
     Axios.get(`http://localhost:3001/task/myTasks/${id}`)
       .then((response) => setTasks(response.data))
-      .catch((error) => console.log(error.response.data));
-  }, [tasks]);
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <>
