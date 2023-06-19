@@ -36,6 +36,7 @@ const Login = () => {
         setMessage(response.data[0]);
         Online(response.data[1]);
         localStorage.setItem("user", response.data[1]);
+        localStorage.setItem("logged", true)
 
         setTimeout(() => {
           Navigate("/");

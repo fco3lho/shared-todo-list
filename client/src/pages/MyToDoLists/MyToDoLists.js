@@ -21,7 +21,7 @@ const MyToDoLists = () => {
   const [error, setError] = useState("");
   const [showMessage, setShowMessage] = useState(false);
 
-  const { whoIs } = useContext(UserContext);
+  const { whoIs, isLoggedIn } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +42,11 @@ const MyToDoLists = () => {
   };
 
   useEffect(() => {
-    if (whoIs) {
+    if (!isLoggedIn && localStorage.getItem("logged")) {
+      Axios.get(`http://localhost:3001/${localStorage.getItem("user")}`)
+        .then((response) => setLists(response.data))
+        .catch((error) => console.log(error.response.data));
+    } else if (whoIs) {
       Axios.get(`http://localhost:3001/${whoIs}`)
         .then((response) => setLists(response.data))
         .catch((error) => console.log(error.response.data));
