@@ -129,7 +129,7 @@ const Tasks = () => {
                 listCard={tasks}
                 setListCard={setTasks}
                 task_id={value.task_id}
-                name={value.name}
+                taskName={value.name}
                 description={value.description}
                 register_date={value.register_date}
                 expire_date={value.expire_date}

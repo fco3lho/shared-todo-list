@@ -15,7 +15,7 @@ function datetimeLocal_to_datetime(datetimelocal) {
 
 // Create
 router.post("/create", (req, res) => {
-  const { taskName, description, expireDate, listID, username } = req.body;
+  const { name, description, expireDate, listID, username } = req.body;
 
   // transformar expire_date para DATETIME user EXPIRE_DATETIME
   const expireDatetime = datetimeLocal_to_datetime(expireDate);
@@ -32,7 +32,7 @@ router.post("/create", (req, res) => {
     } else {
       db.query(
         sql,
-        [taskName, description, expireDatetime, result1[0].user_id, listID],
+        [name, description, expireDatetime, result1[0].user_id, listID],
         (err2, result2) => {
           if (err2) {
             res.status(500).send("Ocorreu um erro interno do servidor.");
