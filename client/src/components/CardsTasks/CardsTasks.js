@@ -17,10 +17,7 @@ const CardsTasks = (props) => {
     e.preventDefault();
 
     Axios.put(`http://localhost:3001/task/myTasks/completTask/${task_id}`)
-      .then((response) => {
-        console.log(response.data);
-        setCompleted(response.data);
-      })
+      .then((response) => console.log(response.data))
       .catch((error) => console.log(error.response.data));
   };
 
@@ -28,10 +25,7 @@ const CardsTasks = (props) => {
     e.preventDefault();
 
     Axios.put(`http://localhost:3001/task/myTasks/incompletTask/${task_id}`)
-      .then((response) => {
-        console.log(response.data);
-        setCompleted(response.data);
-      })
+      .then((response) => console.log(response.data))
       .catch((error) => console.log(error.response.data));
   };
 
@@ -49,7 +43,7 @@ const CardsTasks = (props) => {
               type="checkbox"
               id="completed"
               name="completed"
-              defaultChecked={completed}
+              onChange={(e) => setCompleted(e.target.value)}
               onClick={handleIncompletTask}
               checked
             />
@@ -59,7 +53,7 @@ const CardsTasks = (props) => {
               type="checkbox"
               id="completed"
               name="completed"
-              defaultChecked={completed}
+              onChange={(e) => setCompleted(e.target.value)}
               onClick={handleCompletTask}
             />
           )}
