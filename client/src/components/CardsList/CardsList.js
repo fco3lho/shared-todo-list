@@ -10,6 +10,7 @@ import Axios from "axios";
 //Context
 import { useContext } from "react";
 import { CheckerContext } from "../../contexts/CheckerContext";
+import { UserContext } from "../../contexts/UserContext";
 
 const Cards = (props) => {
   const [editValues, setEditValues] = useState({
@@ -21,10 +22,11 @@ const Cards = (props) => {
     user_admin_id: props.user_admin_id,
   });
 
-  const { check, changeCheck } = useContext(CheckerContext);
+  const { check } = useContext(CheckerContext);
+  const { whoIs } = useContext(UserContext);
 
   const handleDelete = () => {
-    Axios.delete(`http://localhost:3001/delete/${props.list_id}`)
+    Axios.delete(`http://localhost:3001/delete/${props.list_id}/${whoIs}`)
       .then((response) => {
         console.log(response.data);
         props.setListCard(
@@ -33,12 +35,13 @@ const Cards = (props) => {
           })
         );
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error.response.data));
   };
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/getChanges/${props.list_id}`)
-      .catch((error) => console.log(error.response.data));
+    Axios.get(`http://localhost:3001/getChanges/${props.list_id}`).catch(
+      (error) => console.log(error.response.data)
+    );
   }, [check]);
 
   return (

@@ -59,8 +59,32 @@ router.post("/create", (req, res) => {
   });
 });
 
-router.delete(`/delete/:list_id`, (req, res) => {
-  const { list_id } = req.params;
+router.delete(`/delete/:list_id/:whoIs`, (req, res) => {
+  const { list_id, whoIs } = req.params;
+
+  const verifyUser = "SELECT user_id FROM user WHERE username = ?";
+  const verifyUserAdmin =
+    "SELECT * FROM to_do_list WHERE user_admin_id = ? AND list_id = ?";
+
+  db.query(verifyUser, [whoIs], (error1, result1) => {
+    if (error1) {
+      res.status(500).send("Erro interno do servidor.");
+      return;
+    } else {
+      db.query(verifyUserAdmin, [result1[0].user_id, list_id], (error2, result2) => {
+        if (error2) {
+          res.status(500).send("Erro interno do servidor.");
+          return;
+        } else if (result2.length == 0) {
+          console.log(result2);
+          res
+            .status(400)
+            .send("Você não tem permissão para excluir uma lista de tarefas.");
+          return;
+        }
+      });
+    }
+  });
 
   const tableUserList = "DELETE FROM user_list WHERE list_id = ?";
   const tableInvitation = "DELETE FROM invitation WHERE id_todo_list = ?";
