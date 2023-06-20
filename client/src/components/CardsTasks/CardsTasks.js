@@ -7,7 +7,7 @@ import { useState } from "react";
 import Axios from "axios";
 
 const CardsTasks = (props) => {
-  const [task_id, setTaskId] = useState(props.task_id);
+  const task_id = props.task_id;
   const [taskName, setTaskName] = useState(props.taskName);
   const [description, setDescription] = useState(props.description);
   const [expire_date, setExpireDate] = useState(props.expire_date);
@@ -17,9 +17,9 @@ const CardsTasks = (props) => {
 
   const handleCheckboxChange = () => {
     if (isChecked === 0) {
-      setIsChecked(1)
-    } else if (isChecked === 1){
-      setIsChecked(0)
+      setIsChecked(1);
+    } else if (isChecked === 1) {
+      setIsChecked(0);
     }
 
     Axios.put("http://localhost:3001/task/myTasks/checkbox", {
@@ -30,10 +30,28 @@ const CardsTasks = (props) => {
       .catch((error) => console.log(error.response.data));
   };
 
-  const handleEdit = (e) => {
-    e.preventDefault();
-
-    console.log("handleEdit");
+  const handleEdit = () => {
+    Axios.put("http://localhost:3001/task/myTasks/editTask", {
+      task_id: task_id,
+      taskName: taskName,
+      description: description,
+      expire_date: expire_date,
+    })
+      .then((response) => {
+        props.setListCard(
+          props.listCard.map((value) => {
+            return value.task_id === response.data.task_id
+              ? {
+                  task_id: response.data.task_id,
+                  taskName: response.data.taskName,
+                  description: response.data.description,
+                  expire_date: response.data.expire_date,
+                }
+              : value;
+          })
+        );
+      })
+      .catch((error) => console.log(error.response.data));
   };
 
   return (

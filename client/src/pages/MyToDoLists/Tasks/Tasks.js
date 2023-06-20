@@ -70,9 +70,15 @@ const Tasks = () => {
   }, [showMessage]);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/task/myTasks/${id}`)
+    const timer = setTimeout(() => {
+      Axios.get(`http://localhost:3001/task/myTasks/${id}`)
       .then((response) => setTasks(response.data))
       .catch((error) => console.log(error));
+    }, 500)
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [setTasks]);
 
   return (

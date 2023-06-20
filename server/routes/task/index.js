@@ -66,18 +66,16 @@ router.get("/myTasks/:id", (req, res) => {
 
 // Update
 router.put("/myTasks/editTask", (req, res) => {
-  const { task_id, taskName, description, expire_date, completed } = req.body;
+  const { task_id, taskName, description, expire_date } = req.body;
 
   const expireDatetime = datetimeLocal_to_datetime(expire_date);
 
-  console.log({ task_id, taskName, description, expireDatetime, completed });
-
   const sql =
-    "UPDATE task SET name = ?, description = ?, expire_date = ?, completed = ? WHERE task_id = ?";
+    "UPDATE task SET name = ?, description = ?, expire_date = ? WHERE task_id = ?";
 
   db.query(
     sql,
-    [taskName, description, expireDatetime, completed, task_id],
+    [taskName, description, expireDatetime, task_id],
     (err, result) => {
       if (err) {
         res.status(500).send("Ocorreu um erro interno do servidor!");
@@ -85,7 +83,7 @@ router.put("/myTasks/editTask", (req, res) => {
         return;
       }
 
-      res.status(200).send(result);
+      res.status(200).send(req.body);
     }
   );
 });
@@ -109,7 +107,7 @@ router.put("/myTasks/checkbox", (req, res) => {
       return;
     }
 
-    res.status(200).send("Tarefa alterada com sucesso");
+    res.status(200).send("Checkbox alterado com sucesso");
   });
 });
 
