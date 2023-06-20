@@ -66,30 +66,54 @@ router.get("/myTasks/:id", (req, res) => {
 
 // Update
 router.put("/myTasks/editTask", (req, res) => {
-  const { task_id, taskName, description, expire_date } = req.body;
+  const { task_id, taskName, description, expire_date, user, list_id } =
+    req.body;
 
   const expireDatetime = datetimeLocal_to_datetime(expire_date);
 
   const sql =
     "UPDATE task SET name = ?, description = ?, expire_date = ? WHERE task_id = ?";
+  const verifyUser = "SELECT user_id FROM user WHERE username = ?";
+  const changeList =
+    "UPDATE to_do_list SET last_mod = NOW(), user_last_mod_id = ? WHERE list_id = ?";
 
   db.query(
     sql,
     [taskName, description, expireDatetime, task_id],
-    (err, result) => {
-      if (err) {
+    (err1, result1) => {
+      if (err1) {
         res.status(500).send("Ocorreu um erro interno do servidor!");
-        console.log(err);
+        console.log(err1);
         return;
+      } else {
+        db.query(verifyUser, [user], (err2, result2) => {
+          if (err2) {
+            res.status(500).send("Ocorreu um erro interno do servidor!");
+            console.log(err2);
+            return;
+          } else {
+            db.query(
+              changeList,
+              [result2[0].user_id, list_id],
+              (err3, result3) => {
+                if (err3) {
+                  res.status(500).send("Ocorreu um erro interno do servidor!");
+                  console.log(err3);
+                  return;
+                } else {
+                  res.status(200).send(req.body);
+                }
+              }
+            );
+          }
+        });
       }
-
-      res.status(200).send(req.body);
     }
   );
 });
 
 router.put("/myTasks/checkbox", (req, res) => {
-  const { task_id, completed } = req.body;
+  const { task_id, completed, user, list_id } = req.body;
 
   let repairCompleted;
   if (completed === 0) {
@@ -99,15 +123,38 @@ router.put("/myTasks/checkbox", (req, res) => {
   }
 
   const sql = "UPDATE task SET completed = ? WHERE task_id = ?";
+  const verifyUser = "SELECT user_id FROM user WHERE username = ?";
+  const changeList =
+    "UPDATE to_do_list SET last_mod = NOW(), user_last_mod_id = ? WHERE list_id = ?";
 
   db.query(sql, [repairCompleted, task_id], (err, result) => {
     if (err) {
       res.status(500).send("Ocorreu um erro interno do servidor!");
       console.log(err);
       return;
+    } else {
+      db.query(verifyUser, [user], (err2, result2) => {
+        if (err2) {
+          res.status(500).send("Ocorreu um erro interno do servidor!");
+          console.log(err2);
+          return;
+        } else {
+          db.query(
+            changeList,
+            [result2[0].user_id, list_id],
+            (err3, result3) => {
+              if (err3) {
+                res.status(500).send("Ocorreu um erro interno do servidor!");
+                console.log(err3);
+                return;
+              } else {
+                res.status(200).send("Checkbox alterado com sucesso");
+              }
+            }
+          );
+        }
+      });
     }
-
-    res.status(200).send("Checkbox alterado com sucesso");
   });
 });
 

@@ -33,8 +33,10 @@ router.post("/create", (req, res) => {
   const { name, username_admin } = req.body;
 
   const verifyUser = "SELECT user_id FROM user WHERE username = ?";
+  const test =
+    "list_id, name, create_date, last_mod, user_last_mod_id, user_admin_id";
   const sql =
-    "INSERT INTO to_do_list (name, create_date, user_admin_id) VALUES (?, NOW(), ?)";
+    "INSERT INTO to_do_list (name, create_date, last_mod, user_last_mod_id, user_admin_id) VALUES (?, NOW(), NOW(), ?, ?)";
 
   db.query(verifyUser, [username_admin], (err1, result1) => {
     if (err1) {
@@ -45,7 +47,7 @@ router.post("/create", (req, res) => {
 
     const user_admin_id = JSON.parse(JSON.stringify(result1[0].user_id));
 
-    db.query(sql, [name, user_admin_id], (err2, result2) => {
+    db.query(sql, [name, user_admin_id, user_admin_id], (err2, result2) => {
       if (err2) {
         res.status(500).send("Ocorreu um erro interno no servidor.");
         console.log(err2);
@@ -97,6 +99,21 @@ router.delete(`/delete/:list_id`, (req, res) => {
         }
       });
     }
+  });
+});
+
+router.get(`/getChanges/:list_id`, (req, res) => {
+  const { list_id } = req.params;
+
+  const sql = "SELECT * FROM to_do_list WHERE list_id = ?";
+
+  db.query(sql, [list_id], (err, result) => {
+    if (err) {
+      res.status(500).send("Ocorreu um erro interno no servidor.");
+      console.log(err);
+      return;
+    }
+    res.status(200).send(result);
   });
 });
 

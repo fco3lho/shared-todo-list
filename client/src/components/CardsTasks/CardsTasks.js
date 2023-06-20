@@ -2,11 +2,19 @@ import styles from "./CardsTasks.module.css";
 
 //Hooks
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 //Axios
 import Axios from "axios";
 
+//Context
+import { useContext } from "react";
+import { CheckerContext } from "../../contexts/CheckerContext";
+
 const CardsTasks = (props) => {
+  const user = localStorage.getItem("user");
+  const { id } = useParams();
+
   const task_id = props.task_id;
   const [taskName, setTaskName] = useState(props.taskName);
   const [description, setDescription] = useState(props.description);
@@ -14,6 +22,8 @@ const CardsTasks = (props) => {
   const [isChecked, setIsChecked] = useState(props.completed);
 
   const [verifyEdit, setVerifyEdit] = useState(false);
+
+  const { changeCheck } = useContext(CheckerContext);
 
   const handleCheckboxChange = () => {
     if (isChecked === 0) {
@@ -25,8 +35,13 @@ const CardsTasks = (props) => {
     Axios.put("http://localhost:3001/task/myTasks/checkbox", {
       task_id: task_id,
       completed: isChecked,
+      user: user,
+      list_id: id,
     })
-      .then((response) => console.log(response.data))
+      .then((response) => {
+        console.log(response.data),
+        changeCheck
+      })
       .catch((error) => console.log(error.response.data));
   };
 
@@ -36,6 +51,8 @@ const CardsTasks = (props) => {
       taskName: taskName,
       description: description,
       expire_date: expire_date,
+      user: user,
+      list_id: id,
     })
       .then((response) => {
         props.setListCard(
@@ -48,7 +65,8 @@ const CardsTasks = (props) => {
                   expire_date: response.data.expire_date,
                 }
               : value;
-          })
+          }),
+          changeCheck
         );
       })
       .catch((error) => console.log(error.response.data));
@@ -57,7 +75,7 @@ const CardsTasks = (props) => {
   return (
     <>
       <div className={styles.cardContainer}>
-        <p>ID: {props.task_id}</p>
+        {/* <p>ID: {props.task_id}</p> */}
         <p>Tarefa: {props.taskName}</p>
         <p>Descrição: {props.description}</p>
         <p>Data de criação: {props.register_date}</p>

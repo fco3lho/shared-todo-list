@@ -15,24 +15,27 @@ import Tasks from "./pages/MyToDoLists/Tasks/Tasks";
 
 //Contexts
 import { UserProvider } from "./contexts/UserContext";
+import { CheckerProvider } from "./contexts/CheckerContext";
 
 function App() {
   return (
     <div className="App">
-      <UserProvider>
-        <BrowserRouter>
-          <Navbar />
-          <div className="container">
-            <Routes>
-              <Route path="/" element={<MyToDoLists />} />
-              <Route path="/:id/tasks" element={<Tasks/>}/>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/about" element={<About />} />
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </UserProvider>
+      <CheckerProvider>
+        <UserProvider>
+          <BrowserRouter>
+            <Navbar />
+            <div className="container">
+              <Routes>
+                <Route path="/" element={<MyToDoLists />} />
+                <Route path="/:id/tasks" element={<Tasks />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/about" element={<About />} />
+              </Routes>
+            </div>
+          </BrowserRouter>
+        </UserProvider>
+      </CheckerProvider>
     </div>
   );
 }

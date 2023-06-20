@@ -1,11 +1,15 @@
 import styles from "./CardsList.module.css";
 
 //Hooks
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 //Axios
 import Axios from "axios";
+
+//Context
+import { useContext } from "react";
+import { CheckerContext } from "../../contexts/CheckerContext";
 
 const Cards = (props) => {
   const [editValues, setEditValues] = useState({
@@ -16,6 +20,8 @@ const Cards = (props) => {
     user_last_mod_id: props.user_last_mod_id,
     user_admin_id: props.user_admin_id,
   });
+
+  const { check, changeCheck } = useContext(CheckerContext);
 
   const handleDelete = () => {
     Axios.delete(`http://localhost:3001/delete/${props.list_id}`)
@@ -30,10 +36,15 @@ const Cards = (props) => {
       .catch((error) => console.log(error));
   };
 
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/getChanges/${props.list_id}`)
+      .catch((error) => console.log(error.response.data));
+  }, [check]);
+
   return (
     <>
       <div className={styles.cardContainer}>
-        <p>ID Lista: {props.list_id}</p>
+        {/* <p>ID Lista: {props.list_id}</p> */}
         <p>Nome: {props.name}</p>
         <p>Data de criação: {props.create_date}</p>
         <p>Data da última modificação: {props.last_mod}</p>
