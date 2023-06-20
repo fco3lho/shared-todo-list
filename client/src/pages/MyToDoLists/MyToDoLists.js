@@ -68,7 +68,7 @@ const MyToDoLists = () => {
 
   return (
     <>
-      {!isLoggedIn && <Navigate to="/login"/>}
+      {!localStorage.getItem("logged") && <Navigate to="/login"/>}
       <div>
         <form onSubmit={handleSubmit}>
           <input
