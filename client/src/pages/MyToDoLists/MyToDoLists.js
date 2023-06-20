@@ -5,6 +5,7 @@ import Axios from "axios";
 
 //Hooks
 import { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 
 //Components
 import Cards from "../../components/CardsList/CardsList";
@@ -67,6 +68,7 @@ const MyToDoLists = () => {
 
   return (
     <>
+      {!isLoggedIn && <Navigate to="/login"/>}
       <div>
         <form onSubmit={handleSubmit}>
           <input
