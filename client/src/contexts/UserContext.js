@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
     localStorage.removeItem("logged")
 
     Axios.post("http://localhost:3001/logout", {
-      whoIs: whoIs,
+      whoIs: "",
     })
       .then((response) => {
         console.log(response);
