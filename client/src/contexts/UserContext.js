@@ -18,18 +18,17 @@ export const UserProvider = ({ children }) => {
   };
 
   const Offline = () => {
-    setIsLoggedIn(false);
-    setUser("");
-    localStorage.removeItem("user");
-    localStorage.removeItem("logged")
-
     Axios.post("http://localhost:3001/logout", {
-      whoIs: "",
+      validator: false,
     })
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        setIsLoggedIn(false);
+        setUser("");
+        localStorage.removeItem("user");
+        localStorage.removeItem("logged");
       })
-      .catch((err) => console.log(err));
+      .catch((error) => console.log(error.response.data));
   };
 
   useEffect(() => {

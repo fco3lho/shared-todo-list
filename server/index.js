@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 const db = require("./config/database").databaseConnection;
 
 // Importando rotas
-const createToDoList = require("./routes/createToDo");
+const list = require("./routes/list");
 const task = require("./routes/task");
 
 //Register
@@ -57,8 +57,6 @@ app.post("/register", async (req, res) => {
 });
 
 //Login & Logout
-let usernameLogged = "";
-
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -79,8 +77,7 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  if (usernameLogged === req.body.whoIs) {
-    usernameLogged = "";
+  if (!req.body.validator) {
     res.status(200).send("Logout realizado.");
   } else {
     res.status(500).send("Houve um erro interno no servidor.");
@@ -88,7 +85,7 @@ app.post("/logout", (req, res) => {
 });
 
 // criar uma To-Do List
-app.use("/", createToDoList)
+app.use("/", list)
 
 // Manipular tarefas de uma To-Do List
 app.use("/task", task)
