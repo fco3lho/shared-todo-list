@@ -12,6 +12,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import MyToDoLists from "./pages/MyToDoLists/MyToDoLists";
 import Tasks from "./pages/MyToDoLists/Tasks/Tasks";
+import Invite from "./pages/MyToDoLists/Invite/Invite";
 
 //Contexts
 import { UserProvider } from "./contexts/UserContext";
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/:id/invite" element={<Invite />} />
               </Routes>
             </div>
           </BrowserRouter>
