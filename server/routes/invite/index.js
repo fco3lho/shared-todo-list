@@ -64,7 +64,7 @@ router.get("/myInvites/:username", (req, res) => {
 router.get("/users/:username", (req, res) => {
     const { username } = req.params;
 
-    const sql = `SELECT * FROM user WHERE id != username`;
+    const sql = `SELECT * FROM user WHERE username != ?`;
 
     db.query(sql, [username], (err, result) => {
         if (err) {

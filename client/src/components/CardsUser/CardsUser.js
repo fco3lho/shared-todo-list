@@ -2,7 +2,7 @@ import styles from "./CardsUser.module.css";
 
 const CardsUser = (props) => {
   return <>
-    <div>
+    <div className={styles.cardContainer}>
       <p>ID: {props.user_id}</p>
       <p>Username: {props.username}</p>
       <p>Nome: {props.name}</p>
