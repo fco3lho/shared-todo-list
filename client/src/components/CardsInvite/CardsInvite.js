@@ -15,7 +15,11 @@ const CardsInvite = (props) => {
   };
 
   const handleRefuse = () => {
-    console.log(username, props.id_todo_list);
+    Axios.post(
+      `http://localhost:3001/invite/myInvites/${username}/${props.id_todo_list}/refuse`
+    )
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error.response.data));
   };
 
   return (

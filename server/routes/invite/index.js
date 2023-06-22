@@ -44,7 +44,7 @@ router.get("/myInvites/:username", (req, res) => {
   const { username } = req.params;
 
   const user_id = `SELECT user_id FROM user WHERE username = ?`;
-  const sql = `SELECT * FROM invitation AS i JOIN user AS u ON i.id_user_admin = u.user_id WHERE i.id_user_invited = ?`;
+  const sql = `SELECT * FROM invitation AS i JOIN user AS u ON i.id_user_admin = u.user_id WHERE i.id_user_invited = ? AND i.accepted = 0`;
 
   db.query(user_id, [username], (err1, res1) => {
     if (err1) {
@@ -110,7 +110,34 @@ router.post("/myInvites/:username/:list_id/accept", (req, res) => {
         }
 
         res.status(200).send("Você entrou na lista de tarefas com sucesso!");
+
+        db.query;
       });
+    });
+  });
+});
+
+router.post("/myInvites/:username/:list_id/refuse", (req, res) => {
+  const { username, list_id } = req.params;
+
+  const user_id = `SELECT user_id FROM user WHERE username = ?`;
+  const sql = `DELETE FROM invitation WHERE id_user_invited = ? AND id_todo_list = ?`;
+
+  db.query(user_id, [username], (err1, res1) => {
+    if (err1) {
+      res.status(500).send("Ocorreu um erro interno do servidor. 1");
+      console.log(err1);
+      return;
+    }
+
+    db.query(sql, [res1[0].user_id, list_id], (err2, res2) => {
+      if (err2) {
+        res.status(500).send("Ocorreu um erro interno do servidor. 1");
+        console.log(err2);
+        return;
+      }
+
+      res.status(200).send("Convite recusado com sucesso!");
     });
   });
 });
