@@ -21,6 +21,7 @@ const db = require("./config/database").databaseConnection;
 // Importando rotas
 const list = require("./routes/list");
 const task = require("./routes/task");
+const invite = require("./routes/invite");
 
 //Register
 app.post("/register", async (req, res) => {
@@ -89,6 +90,9 @@ app.use("/", list)
 
 // Manipular tarefas de uma To-Do List
 app.use("/task", task)
+
+// Operações de convite
+app.use("/invite", invite);
 
 //Listening port
 app.listen(port, () => {
