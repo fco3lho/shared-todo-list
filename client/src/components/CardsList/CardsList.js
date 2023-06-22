@@ -55,6 +55,7 @@ const Cards = (props) => {
         <p>Usuário que fez última modificação: {props.user_last_mod_id}</p>
         <p>Usuário administrador: {props.user_admin_id}</p>
         <Link to={`/${props.list_id}/tasks`}>Ver tarefas</Link>
+        <Link to={`/${props.list_id}/invite`}>Convidar usuários</Link>
         <Link to={"/"} onClick={handleDelete}>
           Excluir
         </Link>
