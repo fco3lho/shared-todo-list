@@ -18,7 +18,7 @@ const MyInvites = () => {
     Axios.get(`http://localhost:3001/invite/myInvites/${username}`)
       .then((response) => setMyInvites(response.data))
       .catch((error) => console.log(error.response.data));
-  }, [setMyInvites]);
+  }, [, setMyInvites]);
 
   return (
     <div>

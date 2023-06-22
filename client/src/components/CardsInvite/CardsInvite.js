@@ -10,7 +10,7 @@ const CardsInvite = (props) => {
     Axios.post(
       `http://localhost:3001/invite/myInvites/${username}/${props.id_todo_list}/accept`
     )
-      .then((response) => console.log(response.data))
+      .then((response) => alert(response.data))
       .catch((error) => console.log(error.response.data));
   };
 
@@ -18,7 +18,7 @@ const CardsInvite = (props) => {
     Axios.post(
       `http://localhost:3001/invite/myInvites/${username}/${props.id_todo_list}/refuse`
     )
-      .then((response) => console.log(response.data))
+      .then((response) => alert(response.data))
       .catch((error) => console.log(error.response.data));
   };
 

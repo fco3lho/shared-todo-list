@@ -15,8 +15,8 @@ const CardsUser = (props) => {
       username_invited: props.username,
       id_todo_list: id,
     })
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error.response.data));
+      .then((response) => alert(response.data))
+      .catch((error) => alert(error.response.data));
   };
 
   return (

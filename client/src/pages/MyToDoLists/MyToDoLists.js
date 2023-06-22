@@ -66,7 +66,7 @@ const MyToDoLists = () => {
         .then((response) => setInvitedLists(response.data))
         .catch((error) => console.log(error.response.data));
     }
-  }, []);
+  }, [, handleSubmit]);
 
   useEffect(() => {
     if (showMessage) {
@@ -98,7 +98,7 @@ const MyToDoLists = () => {
         {showMessage && error && <p className="error">{error}</p>}
       </div>
 
-      <h1>Minhas listas de tarefas</h1>
+      <h1 className={styles.title}>Minhas listas de tarefas</h1>
       <div className={styles.mytodolists}>
         {typeof lists !== "undefined" &&
           lists.map((value) => {
@@ -118,7 +118,7 @@ const MyToDoLists = () => {
           })}
       </div>
 
-      <h1>Listas de tarefas compartilhadas</h1>
+      <h1 className={styles.title}>Listas de tarefas compartilhadas</h1>
       <div className={styles.mytodolists}>
         {typeof invitedLists !== "undefined" &&
           invitedLists.map((value) => {

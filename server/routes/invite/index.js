@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
         [res1[0].user_id, res2[0].user_id, id_todo_list],
         (err3, res3) => {
           if (err3) {
-            res.status(500).send("Ocorreu um erro interno no servidor.");
+            res.status(500).send("Usuário já foi convidado.");
             console.log(err3);
             return;
           }
