@@ -142,4 +142,33 @@ router.post("/myInvites/:username/:list_id/refuse", (req, res) => {
   });
 });
 
+router.get("/invitedLists/:username", (req, res) => {
+  const { username } = req.params;
+
+  const verifyUser = "SELECT user_id FROM user WHERE username = ?";
+  const sql = `SELECT t.list_id, t.name, t.create_date, t.last_mod, t.user_last_mod_id, t.user_admin_id 
+  FROM user_list AS u 
+    JOIN to_do_list as t 
+    ON u.list_id = t.list_id 
+  WHERE u.user_id = ?`;
+
+  db.query(verifyUser, [username], (err1, res1) => {
+    if (err1) {
+      res.status(500).send("Ocorreu um erro interno do servidor. 1");
+      console.log(err1);
+      return;
+    }
+
+    db.query(sql, [res1[0].user_id], (err2, res2) => {
+      if (err2) {
+        res.status(500).send("Ocorreu um erro interno do servidor. 1");
+        console.log(err2);
+        return;
+      }
+
+      res.status(200).send(res2);
+    });
+  });
+});
+
 module.exports = router;
