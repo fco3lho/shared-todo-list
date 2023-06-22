@@ -13,6 +13,7 @@ import Register from "./pages/Register/Register";
 import MyToDoLists from "./pages/MyToDoLists/MyToDoLists";
 import Tasks from "./pages/MyToDoLists/Tasks/Tasks";
 import Invite from "./pages/MyToDoLists/Invite/Invite";
+import MyInvites from "./pages/MyInvites/MyInvites";
 
 //Contexts
 import { UserProvider } from "./contexts/UserContext";
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/:id/invite" element={<Invite />} />
+                <Route path="/myInvites" element={<MyInvites />} />
               </Routes>
             </div>
           </BrowserRouter>

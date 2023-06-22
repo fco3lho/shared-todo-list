@@ -18,6 +18,12 @@ const Navbar = () => {
           </li>
         )}
 
+        {isLoggedIn && (
+          <li>
+            <NavLink to="/myInvites">Meu convites</NavLink>
+          </li>
+        )}
+
         {!isLoggedIn && (
           <li>
             <NavLink to="/login">Login</NavLink>
