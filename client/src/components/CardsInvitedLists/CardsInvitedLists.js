@@ -10,21 +10,9 @@ import Axios from "axios";
 //Context
 import { useContext } from "react";
 import { CheckerContext } from "../../contexts/CheckerContext";
-import { UserContext } from "../../contexts/UserContext";
 
 const Cards = (props) => {
-  //Caso vá fazer edição, trocar para useState()
-  const editValues = {
-    list_id: props.list_id,
-    name: props.name,
-    create_date: props.create_date,
-    last_mod: props.last_mod,
-    user_last_mod_id: props.user_last_mod_id,
-    user_admin_id: props.user_admin_id,
-  }
-
   const { check } = useContext(CheckerContext);
-  const { whoIs } = useContext(UserContext);
 
   useEffect(() => {
     Axios.get(`http://localhost:3001/getChanges/${props.list_id}`).catch(
