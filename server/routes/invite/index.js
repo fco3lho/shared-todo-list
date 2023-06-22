@@ -85,26 +85,26 @@ router.post("/myInvites/:username/:list_id/accept", (req, res) => {
   const { username, list_id } = req.params;
 
   const user_id = `SELECT user_id FROM user WHERE username = ?`;
-  const sql = `UPDATE invitation SET accepted = true WHERE user_id = ? AND list_id = ?`;
+  const sql = `UPDATE invitation SET accepted = true WHERE id_user_invited = ? AND id_todo_list = ?`;
   const sql_user_list = `INSERT INTO user_list (user_id, list_id) VALUES (?, ?)`;
 
   db.query(user_id, [username], (err1, res1) => {
     if (err1) {
-      res.status(500).send("Ocorreu um erro interno do servidor.");
+      res.status(500).send("Ocorreu um erro interno do servidor. 1");
       console.log(err1);
       return;
     }
 
     db.query(sql, [res1[0].user_id, list_id], (err2, res2) => {
       if (err2) {
-        res.status(500).send("Ocorreu um erro interno do servidor.");
+        res.status(500).send("Ocorreu um erro interno do servidor. 2");
         console.log(err2);
         return;
       }
 
       db.query(sql_user_list, [res1[0].user_id, list_id], (err3, res3) => {
         if (err3) {
-          res.status(500).send("Ocorreu um erro interno do servidor.");
+          res.status(500).send("Ocorreu um erro interno do servidor. 3");
           console.log(err3);
           return;
         }
