@@ -75,10 +75,15 @@ const Register = () => {
   };
 
   return (
-    <div className={styles.register}>
+    <div className={styles.container}>
+      <div className={styles.subtexto}>
       <h1>Cadastre-se para criar listas de tarefas</h1>
+      <p>É rápido, prático e eficiente.</p>
+      </div>
       <form onSubmit={handleSubmit}>
-        <label>
+      <div className={styles.box}>
+        <div className={styles.coluna}>
+        <label className={styles.inputs}>
           <span>Nome:</span>
           <input
             type="text"
@@ -90,7 +95,7 @@ const Register = () => {
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        <label>
+        <label className={styles.inputs}>
           <span>Email:</span>
           <input
             type="email"
@@ -102,7 +107,7 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-        <label>
+        <label className={styles.inputs}>
           <span>Nome de usuário:</span>
           <input
             type="text"
@@ -114,8 +119,10 @@ const Register = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
-        <label>
-          <span>Número de telefone:</span>
+        </div>
+        <div className={styles.coluna}>
+        <label className={styles.inputs}>
+          <span className={styles.nomeinput}>Telefone:</span>
           <input
             type="text"
             name="phone"
@@ -126,7 +133,7 @@ const Register = () => {
             onChange={(e) => setPhone(e.target.value)}
           />
         </label>
-        <label>
+        <label className={styles.inputs}>
           <span>Senha:</span>
           <input
             type="password"
@@ -138,8 +145,8 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <label>
-          <span>Confirmação de senha:</span>
+        <label className={styles.inputs}>
+          <span className={styles.nomeinput}>Confirmar senha:</span>
           <input
             type="password"
             name="confirmPassword"
@@ -150,11 +157,11 @@ const Register = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </label>
-        <button className="btn" onClick={handleShowMessage}>
-          Cadastrar
-        </button>
+        </div>
+        <button className={styles.button} onClick={handleShowMessage}> Registrar </button>
         {showMessage && message && <p className={styles.success}>{message}</p>}
         {showMessage && error && <p className="error">{error}</p>}
+        </div>
       </form>
     </div>
   );

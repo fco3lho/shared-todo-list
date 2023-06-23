@@ -64,12 +64,15 @@ const Login = () => {
   }, [showMessage]);
 
   return (
-    <div>
+    <div className={styles.container}>
+      <div className={styles.subtexto}>
       <h1>Entrar</h1>
-      <p>Faça o login para poder utilizar a To-do List. </p>
+      <p>Faça o login para poder utilizar a To-do List.</p>
+      </div>
       <form onSubmit={handleSubmit}>
-        <label>
-          <span>Nome de usuário:</span>
+        <div className={styles.box}>
+        <label className={styles.inputs}>
+          <span className={styles.nomeinput}>Nome de usuário:</span>
           <input
             type="text"
             name="username"
@@ -80,8 +83,8 @@ const Login = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
-        <label>
-          <span>Senha:</span>
+        <label className={styles.inputs}>
+          <span className={styles.nomeinput}>Senha:</span>
           <input
             type="password"
             name="username"
@@ -92,8 +95,8 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-
-        <button onClick={handleShowMessage}> Entrar </button>
+        <button className={styles.button} onClick={handleShowMessage}> Entrar </button>
+        </div>
         {showMessage && message && <p>{message}</p>}
         {showMessage && error && <p>{error}</p>}
       </form>

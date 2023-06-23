@@ -66,7 +66,7 @@ const MyToDoLists = () => {
         .then((response) => setInvitedLists(response.data))
         .catch((error) => console.log(error.response.data));
     }
-  }, [, handleSubmit]);
+  }, [showMessage]);
 
   useEffect(() => {
     if (showMessage) {

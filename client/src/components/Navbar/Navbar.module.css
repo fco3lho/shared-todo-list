@@ -1,0 +1,34 @@
+.topnav {
+    background-color: #9bc0cc;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 10px;
+    text-decoration: none;
+  }
+
+  li{
+    text-decoration: none;
+  }
+
+
+  .topnav li {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    list-style: none;
+  }
+  
+  .topnav li:hover {
+    background-color: #ddd;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .topnav li.active {
+    background-color: #04AA6D;
+    text-decoration: none;
+    color: rgb(190, 188, 188);
+  }

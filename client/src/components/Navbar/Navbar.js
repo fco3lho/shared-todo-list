@@ -4,11 +4,14 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
+
+import styles from "./Navbar.module.css";
+
 const Navbar = () => {
   const { isLoggedIn, whoIs, Offline } = useContext(UserContext);
 
   return (
-    <div>
+    <div className={styles.topnav}>
       <ul>
         {isLoggedIn && <li>Bem vindo, {whoIs}</li>}
 
