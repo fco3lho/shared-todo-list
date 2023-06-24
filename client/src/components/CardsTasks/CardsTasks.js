@@ -81,8 +81,8 @@ const CardsTasks = (props) => {
         {/* <p>ID: {props.task_id}</p> */}
         <p className={styles.nomeTarefa}>Tarefa: {props.taskName}</p>
         <p>Descrição: {props.description}</p>
-        <p>Data de criação: {format(new Date(props.register_date), 'dd/MM/yyyy')}</p>
-        <p>Data de expiração: {format(new Date(props.expire_date), 'dd/MM/yyyy')}</p>
+        <p>Criado em: {format(new Date(props.register_date), 'dd/MM/yyyy')}</p>
+        <p>Expira em: {format(new Date(props.expire_date), 'dd/MM/yyyy')}</p>
 
         <div>
           <input
