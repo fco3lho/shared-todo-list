@@ -28,8 +28,8 @@ const CardsInvite = (props) => {
         {props.username} lhe convidou para acessar a lista de tarefas de ID:{" "}
         {props.id_todo_list}
       </p>
-      <button onClick={handleAccept}>Aceitar</button>
-      <button onClick={handleRefuse}>Recusar</button>
+      <button className={styles.buttonA} onClick={handleAccept}>Aceitar</button>
+      <button className={styles.buttonR} onClick={handleRefuse}>Recusar</button>
     </div>
   );
 };

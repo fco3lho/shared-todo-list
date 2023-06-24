@@ -16,3 +16,37 @@
   justify-content: center;
   align-items: center;
 }
+
+.buttonA{
+  margin-left: 30px;
+  display: inline-block;
+  padding: .30rem 1.25rem;
+  border-radius: 10rem;
+  color: #050101;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: .11rem;
+  transition: all .3s;
+  position: relative;
+  width: 150px;
+  overflow: hidden;
+  background-color: #57b964;
+  z-index: 1;
+}
+
+.buttonR {
+  margin-left: 30px;
+  display: inline-block;
+  padding: .30rem 1.25rem;
+  border-radius: 10rem;
+  color: #050101;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: .11rem;
+  transition: all .3s;
+  position: relative;
+  background-color: #d42a2a;
+  width: 150px;
+  overflow: hidden;
+  z-index: 1;
+}
