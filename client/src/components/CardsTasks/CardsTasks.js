@@ -92,13 +92,14 @@ const CardsTasks = (props) => {
           />
           <label htmlFor="completed">Feita</label>
         </div>
-        <button className={styles.button} onClick={() => setVerifyEdit(true)}>Editar</button>
+        <button className={styles.buttonEdit} onClick={() => setVerifyEdit(true)}>Editar</button>
       </div>
 
       {verifyEdit && (
         <form onSubmit={handleEdit}>
-          <h2>Editando tarefa: {props.taskName}</h2>
-          <input
+          <div className={styles.editando}>
+          <h2 className={styles.subtexto}>⚠️ Editando tarefa: {props.taskName}</h2>
+          <input className={styles.inputs}
             type="text"
             id="name"
             label="Nome da tarefa"
@@ -109,7 +110,7 @@ const CardsTasks = (props) => {
             name="name"
             required
           />
-          <input
+          <input className={styles.inputs}
             type="text"
             id="description"
             label="Descrição"
@@ -120,7 +121,7 @@ const CardsTasks = (props) => {
             name="description"
             required
           />
-          <input
+          <input className={styles.inputs}
             type="datetime-local"
             id="expireDate"
             label="Data de expiração"
@@ -131,10 +132,11 @@ const CardsTasks = (props) => {
             name="expire_date"
             required
           />
-          <button>Editar</button>
-          <a button className={styles.buttonCancel} href="#" onClick={() => setVerifyEdit(false)}>
+          <button className={styles.buttonConfirm}>Confirmar</button>
+          <button className={styles.buttonCancel} onClick={() => setVerifyEdit(false)}>
             Cancelar
-          </a>
+          </button>
+          </div>
         </form>
       )}
     </>

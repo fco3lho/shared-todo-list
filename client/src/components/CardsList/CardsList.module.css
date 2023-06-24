@@ -5,7 +5,7 @@
   width: 18.75em;
   padding: 1.5em;
   margin: 1.5em;
-  background-color: #898989;
+  background-color: #bcc3caf6;
   border: 0.01em ridge rgba(0, 0, 0, 0.389);
   border-radius: 0.5em;
   box-shadow: 0.6em 0.6em 0.6em rgba(0, 0, 0, 0.389);
@@ -28,14 +28,14 @@
 }
 
 .funcionalidades{
-  background-color: rgb(117, 137, 150);
+  background-color: rgb(152, 172, 185);
   display: flex;
   border-color: black;
   flex-direction: column;
   align-items: center;
   width: 18.75em;
   padding: 1.5em;
-  margin: 1.5em;
+  margin-top: -3px;
   text-align: justify;
 }
 
@@ -45,4 +45,9 @@ li{
 .nome{
   font-weight: bold;
   font-size: larger;
+}
+.funcionalidades .opcoes{
+  font-size: larger;
+  float: left;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

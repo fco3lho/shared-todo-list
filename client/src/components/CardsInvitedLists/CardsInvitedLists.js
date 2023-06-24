@@ -25,6 +25,7 @@ const Cards = (props) => {
   return (
     <>
       <div className={styles.cardContainer}>
+
         {/* <p>ID Lista: {props.list_id}</p> */}
         <p className={styles.nome}>Nome: {props.name}</p>
         <p>Criado em: {format(new Date(props.create_date), 'dd/MM/yyyy')}</p>
@@ -32,7 +33,8 @@ const Cards = (props) => {
         <p>Modificado por: {props.user_last_mod_id}</p>
         <p>Usuário adm: {props.user_admin_id}</p>
         <div className={styles.funcionalidades}>
-          <Link className={styles.outrasfunc} to={`/${props.list_id}/tasks`}>Ver tarefas 🔎</Link>
+        <h1 className={styles.opcoes}>Opções: </h1>
+          <Link className={styles.outrasfunc} to={`/${props.list_id}/tasks`}>-  Ver tarefas 🔎</Link>
         </div>
       </div>
     </>

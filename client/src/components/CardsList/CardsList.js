@@ -57,11 +57,12 @@ const Cards = (props) => {
         <p>Modificado por: {props.user_last_mod_id}</p>
         <p>Usuário adm: {props.user_admin_id}</p>
         <div className={styles.funcionalidades}>
+          <h1 className={styles.opcoes}>Opções: </h1>
           <ul>
-            <li><Link className={styles.outrasfunc} to={`/${props.list_id}/tasks`}>Ver tarefas 🔎</Link></li>
-            <li><Link className={styles.outrasfunc} to={`/${props.list_id}/invite`}>Convidar usuários ✉️</Link></li>
+            <li><Link className={styles.outrasfunc} to={`/${props.list_id}/tasks`}>-  Ver tarefas 🔎</Link></li>
+            <li><Link className={styles.outrasfunc} to={`/${props.list_id}/invite`}>-  Convidar usuários ✉️</Link></li>
             <li><Link className={styles.excluir} to={"/"} onClick={handleDelete}>
-              Excluir 🗑️
+              -  Excluir 🗑️
             </Link></li>
           </ul>
         </div>

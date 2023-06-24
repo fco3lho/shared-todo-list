@@ -1,6 +1,6 @@
 .mytodolists{
   display: flex;
-  background: #c5c6c7;
+  background: #c7c5c5;
   flex-wrap: wrap;
   justify-content: center;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -74,4 +74,5 @@
   }
   body{
     background: #c5c6c7;
+    overflow-x: hidden;
   }

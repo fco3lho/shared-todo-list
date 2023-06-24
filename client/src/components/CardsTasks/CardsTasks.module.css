@@ -4,7 +4,7 @@
   width: 85%;
   padding: 1.5em;
   margin: 1.5em;
-  background-color: #898989;
+  background-color: #bcc3caf6;
   text-align: justify;
   border: 0.01em ridge rgba(0, 0, 0, 0.389);
   border-radius: 0.5em;
@@ -25,7 +25,27 @@
   border-radius: 10rem;
   color: #050101;
   text-transform: uppercase;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-decoration: none;
   background-color: red;
+  font-size: 1rem;
+  letter-spacing: .11rem;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.buttonConfirm{
+  margin-left: 30px;
+  display: inline-block;
+  padding: .45rem 1.25rem;
+  border-radius: 10rem;
+  color: #050101;
+  text-transform: uppercase;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-decoration: none;
+  background-color: rgb(99, 240, 86);
   font-size: 1rem;
   letter-spacing: .11rem;
   transition: all .3s;
@@ -41,7 +61,7 @@
 .button{
   margin-left: 30px;
   display: inline-block;
-  padding: .45rem 1.25rem;
+  padding: .15rem 1.25rem;
   border-radius: 2rem;
   color: #050101;
   text-transform: uppercase;
@@ -58,4 +78,42 @@
   justify-content: center;
   align-items: center;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.subtexto{
+  padding: 10px;
+  font-size: medium;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.editando{
+  background-color: #bcc3caf6;
+  
+}
+
+.inputs{
+  width: 100px;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+  padding: .25rem 1.25rem;
+  color: #050101;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.buttonEdit{
+  margin-left: 30px;
+  display: inline-block;
+  padding: .15rem 1.25rem;
+  border-radius: 2rem;
+  color: #050101;
+  text-transform: uppercase;
+  background-color: #e9f38cf6;
+  font-size: 1rem;
+  letter-spacing: .11rem;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
