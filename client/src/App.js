@@ -25,7 +25,7 @@ function App() {
       <CheckerProvider>
         <UserProvider>
           <BrowserRouter>
-            <Navbar />
+            <Navbar className={StyleSheet.navbar} />
             <div className="container">
               <Routes>
                 <Route path="/" element={<MyToDoLists />} />

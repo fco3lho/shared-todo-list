@@ -24,12 +24,12 @@ const Cards = (props) => {
     <>
       <div className={styles.cardContainer}>
         {/* <p>ID Lista: {props.list_id}</p> */}
-        <p>Nome: {props.name}</p>
-        <p>Data de criação: {props.create_date}</p>
-        <p>Data da última modificação: {props.last_mod}</p>
-        <p>Usuário que fez última modificação: {props.user_last_mod_id}</p>
+        <p className={styles.nome}>Nome: {props.name}</p>
+        <p>Criado em: {props.create_date}</p>
+        <p>Modificado em: {props.last_mod}</p>
+        <p>Modificado por: {props.user_last_mod_id}</p>
         <p>Usuário administrador: {props.user_admin_id}</p>
-        <Link to={`/${props.list_id}/tasks`}>Ver tarefas</Link>
+        <Link to={`/${props.list_id}/tasks`}>Ver tarefas 🔎</Link>
       </div>
     </>
   );

@@ -1,11 +1,77 @@
 .mytodolists{
   display: flex;
+  background: #c5c6c7;
   flex-wrap: wrap;
   justify-content: center;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .title {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.informacoes{
+  width: 100vw;
+    height: 100vh;
+    background: #c5c6c7;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.button {
+  margin-left: 25px;
+  display: inline-block;
+  padding: .45rem 1.25rem;
+  border-radius: 2px;
+  width: 100px;
+  color: #010305;
+  text-transform: uppercase;
+  background-color:  #30f53a;
+  font-size: 0.8rem;
+  letter-spacing: .15rem;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+}
+.inputs{
+  width: 100px;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+  padding: .45rem 1.25rem;
+  color: #050101;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+.subtexto{
+  padding: 10px;
+  font-size: medium;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.menuInicio{
+  display: inline-block;
+  padding: 10px;
+}
+.nomeinput{
+  margin-left: 0px;
+  padding: 10px;
+  font-size: medium;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+.container {
+  background: #c5c6c7;
+  }
+  .title{
+    background: #c5c6c7;
+  }
+  body{
+    background: #c5c6c7;
+  }

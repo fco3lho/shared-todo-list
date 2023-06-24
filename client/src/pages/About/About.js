@@ -1,10 +1,9 @@
 import styles from "./About.module.css";
 
 const About = () => {
-  return <div className={styles.container}>
+  return (<div className={styles.container}>
     <div className={styles.subtexto}>
-    <h1>To-Do List project</h1>
-    <p>Um pouco sobre o projeto</p>
+    <h1>To-Do List project  </h1>
     </div>
     
     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -31,7 +30,8 @@ const About = () => {
       the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
        and more recently with desktop publishing software like Aldus PageMaker including 
        versions of Lorem Ipsum.</p>
-  </div>;
+  </div>
+  );
 };
 
 export default About;

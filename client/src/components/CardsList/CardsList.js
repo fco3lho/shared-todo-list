@@ -49,16 +49,20 @@ const Cards = (props) => {
     <>
       <div className={styles.cardContainer}>
         {/* <p>ID Lista: {props.list_id}</p> */}
-        <p>Nome: {props.name}</p>
-        <p>Data de criação: {props.create_date}</p>
-        <p>Data da última modificação: {props.last_mod}</p>
-        <p>Usuário que fez última modificação: {props.user_last_mod_id}</p>
+        <p className={styles.nome}>{props.name}</p>
+        <p>Criado em: {props.create_date}</p>
+        <p>Modificado em: {props.last_mod}</p>
+        <p>Modificado por: {props.user_last_mod_id}</p>
         <p>Usuário administrador: {props.user_admin_id}</p>
-        <Link to={`/${props.list_id}/tasks`}>Ver tarefas</Link>
-        <Link to={`/${props.list_id}/invite`}>Convidar usuários</Link>
-        <Link to={"/"} onClick={handleDelete}>
-          Excluir
-        </Link>
+        <div className={styles.funcionalidades}>
+        <ul>
+        <li><Link className={styles.outrasfunc} to={`/${props.list_id}/tasks`}>Ver tarefas 🔎</Link></li>
+        <li><Link className={styles.outrasfunc} to={`/${props.list_id}/invite`}>Convidar usuários ✉️</Link></li>
+        <li><Link className={styles.excluir} to={"/"} onClick={handleDelete}>
+          Excluir 🗑️
+        </Link></li>
+        </ul>
+        </div>
       </div>
     </>
   );

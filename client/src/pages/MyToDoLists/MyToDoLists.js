@@ -83,22 +83,24 @@ const MyToDoLists = () => {
   return (
     <>
       {!localStorage.getItem("logged") && <Navigate to="/login" />}
-      <div>
+      <div className={styles.container}>
         <form onSubmit={handleSubmit}>
-          <input
+        <span className={styles.nomeinput}>Criar nova lista de atividades:</span>
+          <input className={styles.inputs}
+          required
             type="text"
-            placeholder="Digite o nome da lista de tarefas que deseja criar."
+            placeholder="nome ..."
             onChange={(e) => {
               setName(e.target.value);
             }}
           />
-          <button onClick={handleShowMessage}>Criar</button>
+          <button className={styles.button} onClick={handleShowMessage}>Criar</button>
         </form>
         {showMessage && message && <p className={styles.success}>{message}</p>}
         {showMessage && error && <p className="error">{error}</p>}
       </div>
 
-      <h1 className={styles.title}>Minhas listas de tarefas</h1>
+      <h1 className={styles.title}>Minhas listas de tarefas 📃</h1>
       <div className={styles.mytodolists}>
         {typeof lists !== "undefined" &&
           lists.map((value) => {
@@ -118,12 +120,12 @@ const MyToDoLists = () => {
           })}
       </div>
 
-      <h1 className={styles.title}>Listas de tarefas compartilhadas</h1>
+      <h1 className={styles.title}>Listas de tarefas compartilhadas 👥</h1>
       <div className={styles.mytodolists}>
         {typeof invitedLists !== "undefined" &&
           invitedLists.map((value) => {
             return (
-              <InvitedCards
+              <InvitedCards className={styles.informacoes}
                 key={value.list_id}
                 listCard={invitedLists}
                 setListCard={setInvitedLists}

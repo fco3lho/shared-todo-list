@@ -77,10 +77,12 @@ const Tasks = () => {
 
   return (
     <>
-      <div>
+    <h1 className={styles.title}>Cadastrar nova tarefa ✏️</h1>
+      <div className={styles.container}>
         <form onSubmit={handleSubmit}>
-          <label>
-            <span>Nome:</span>
+        <div className={styles.box}>
+        <label className={styles.inputs}>
+            <span className={styles.nomeinput}>Nome:  </span>
             <input
               type="text"
               name="name"
@@ -90,8 +92,8 @@ const Tasks = () => {
               onChange={(e) => setName(e.target.value)}
             />
           </label>
-          <label>
-            <span>Descrição:</span>
+          <label className={styles.inputs}>
+            <span className={styles.nomeinput}>Descrição:  </span>
             <input
               type="text"
               name="description"
@@ -101,8 +103,8 @@ const Tasks = () => {
               onChange={(e) => setDescription(e.target.value)}
             />
           </label>
-          <label>
-            <span>Data de expiração:</span>
+          <label className={styles.inputs}>
+            <span className={styles.nomeinput}>Data de expiração:  </span>
             <input
               type="datetime-local"
               name="expireDate"
@@ -112,12 +114,13 @@ const Tasks = () => {
               onChange={handleChangeDate}
             />
           </label>
-          <button onClick={handleShowMessage}>Criar</button>
+          <button className={styles.button} onClick={handleShowMessage}>Criar</button>
+          </div>
         </form>
         {showMessage && message && <p className={styles.success}>{message}</p>}
         {showMessage && error && <p className="error">{error}</p>}
       </div>
-
+      <h1 className={styles.title}>Tarefas cadastradas ✅</h1>
       <div className={styles.tasks}>
         {typeof tasks !== "undefined" &&
           tasks.map((value) => {

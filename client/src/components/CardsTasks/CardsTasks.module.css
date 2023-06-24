@@ -9,10 +9,53 @@
   border: 0.01em ridge rgba(0, 0, 0, 0.389);
   border-radius: 0.5em;
   box-shadow: 0.6em 0.6em 0.6em rgba(0, 0, 0, 0.389);
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .cardContainer div{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.buttonCancel{
+  margin-left: 30px;
+  display: inline-block;
+  padding: .45rem 1.25rem;
+  border-radius: 10rem;
+  color: #050101;
+  text-transform: uppercase;
+  background-color: red;
+  font-size: 1rem;
+  letter-spacing: .11rem;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.nomeTarefa{
+  font-weight: bold;
+}
+
+.button{
+  margin-left: 30px;
+  display: inline-block;
+  padding: .45rem 1.25rem;
+  border-radius: 2rem;
+  color: #050101;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: .11rem;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

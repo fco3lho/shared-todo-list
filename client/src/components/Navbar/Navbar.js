@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <div className={styles.topnav}>
       <ul>
-        {isLoggedIn && <li>Bem vindo, {whoIs}</li>}
+        {isLoggedIn && <li className={styles.bemvindo}>Bem vindo, {whoIs}</li>}
 
         {isLoggedIn && (
           <li>

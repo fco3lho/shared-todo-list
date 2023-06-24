@@ -10,4 +10,9 @@
   border: 0.01em ridge rgba(0, 0, 0, 0.389);
   border-radius: 0.5em;
   box-shadow: 0.6em 0.6em 0.6em rgba(0, 0, 0, 0.389);
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.nome{
+  font-weight: bold;
+  font-size: larger;
 }

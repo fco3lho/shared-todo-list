@@ -74,12 +74,13 @@ const CardsTasks = (props) => {
 
   return (
     <>
+      <div className={styles.mytodolists}></div>
       <div className={styles.cardContainer}>
         {/* <p>ID: {props.task_id}</p> */}
-        <p>Tarefa: {props.taskName}</p>
+        <p className={styles.nomeTarefa}>Tarefa: {props.taskName}</p>
         <p>Descrição: {props.description}</p>
-        <p>Data de criação: {props.register_date}</p>
-        <p>Data de expiração: {props.expire_date}</p>
+        <p>Criado em: {props.register_date}</p>
+        <p>Expira em: {props.expire_date}</p>
         <div>
           <input
             type="checkbox"
@@ -88,7 +89,7 @@ const CardsTasks = (props) => {
           />
           <label htmlFor="completed">Feita</label>
         </div>
-        <button onClick={() => setVerifyEdit(true)}>Editar</button>
+        <button className={styles.button} onClick={() => setVerifyEdit(true)}>Editar</button>
       </div>
 
       {verifyEdit && (
@@ -128,9 +129,9 @@ const CardsTasks = (props) => {
             required
           />
           <button>Editar</button>
-          <a href="#" onClick={() => setVerifyEdit(false)}>
+          <button className={styles.buttonCancel} onClick={() => setVerifyEdit(false)}>
             Cancelar
-          </a>
+          </button>
         </form>
       )}
     </>
