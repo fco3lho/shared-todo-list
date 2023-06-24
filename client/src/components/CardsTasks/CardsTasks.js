@@ -76,9 +76,10 @@ const CardsTasks = (props) => {
 
   return (
     <>
+      <div className={styles.mytodolists}></div>
       <div className={styles.cardContainer}>
         {/* <p>ID: {props.task_id}</p> */}
-        <p>Tarefa: {props.taskName}</p>
+        <p className={styles.nomeTarefa}>Tarefa: {props.taskName}</p>
         <p>Descrição: {props.description}</p>
         <p>Data de criação: {format(new Date(props.register_date), 'dd/MM/yyyy')}</p>
         <p>Data de expiração: {format(new Date(props.expire_date), 'dd/MM/yyyy')}</p>
@@ -91,7 +92,7 @@ const CardsTasks = (props) => {
           />
           <label htmlFor="completed">Feita</label>
         </div>
-        <button onClick={() => setVerifyEdit(true)}>Editar</button>
+        <button className={styles.button} onClick={() => setVerifyEdit(true)}>Editar</button>
       </div>
 
       {verifyEdit && (
@@ -131,7 +132,7 @@ const CardsTasks = (props) => {
             required
           />
           <button>Editar</button>
-          <a href="#" onClick={() => setVerifyEdit(false)}>
+          <a button className={styles.buttonCancel} href="#" onClick={() => setVerifyEdit(false)}>
             Cancelar
           </a>
         </form>
