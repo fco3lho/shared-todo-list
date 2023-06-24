@@ -11,6 +11,8 @@ import Axios from "axios";
 import { useContext } from "react";
 import { CheckerContext } from "../../contexts/CheckerContext";
 
+import { format } from 'date-fns';
+
 const CardsTasks = (props) => {
   const user = localStorage.getItem("user");
   const { id } = useParams();
@@ -39,8 +41,8 @@ const CardsTasks = (props) => {
       list_id: id,
     })
       .then((response) => {
-        console.log(response.data),
-        changeCheck
+        console.log(response.data);
+        changeCheck();
       })
       .catch((error) => console.log(error.response.data));
   };
@@ -59,11 +61,11 @@ const CardsTasks = (props) => {
           props.listCard.map((value) => {
             return value.task_id === response.data.task_id
               ? {
-                  task_id: response.data.task_id,
-                  taskName: response.data.taskName,
-                  description: response.data.description,
-                  expire_date: response.data.expire_date,
-                }
+                task_id: response.data.task_id,
+                taskName: response.data.taskName,
+                description: response.data.description,
+                expire_date: response.data.expire_date,
+              }
               : value;
           }),
           changeCheck
@@ -74,13 +76,13 @@ const CardsTasks = (props) => {
 
   return (
     <>
-      <div className={styles.mytodolists}></div>
       <div className={styles.cardContainer}>
         {/* <p>ID: {props.task_id}</p> */}
-        <p className={styles.nomeTarefa}>Tarefa: {props.taskName}</p>
+        <p>Tarefa: {props.taskName}</p>
         <p>Descrição: {props.description}</p>
-        <p>Criado em: {props.register_date}</p>
-        <p>Expira em: {props.expire_date}</p>
+        <p>Data de criação: {format(new Date(props.register_date), 'dd/MM/yyyy')}</p>
+        <p>Data de expiração: {format(new Date(props.expire_date), 'dd/MM/yyyy')}</p>
+
         <div>
           <input
             type="checkbox"
@@ -89,7 +91,7 @@ const CardsTasks = (props) => {
           />
           <label htmlFor="completed">Feita</label>
         </div>
-        <button className={styles.button} onClick={() => setVerifyEdit(true)}>Editar</button>
+        <button onClick={() => setVerifyEdit(true)}>Editar</button>
       </div>
 
       {verifyEdit && (
@@ -129,9 +131,9 @@ const CardsTasks = (props) => {
             required
           />
           <button>Editar</button>
-          <button className={styles.buttonCancel} onClick={() => setVerifyEdit(false)}>
+          <a href="#" onClick={() => setVerifyEdit(false)}>
             Cancelar
-          </button>
+          </a>
         </form>
       )}
     </>
