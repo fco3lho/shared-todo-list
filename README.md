@@ -48,3 +48,9 @@ Este projeto consiste em uma lista de tarefas compartilhada que permite que voc�
   <li>Inicie o front-end utilizando o comando <code>npm start</code> na pasta <code>/client</code>.</li>
   <li>Inicie o back-end utilizando o comando <code>npm start</code> na pasta <code>/server</code>.</li>
   <li>Se uma página não for aberta em seu navegador, abra a aplicação em seu navegador na porta mostrada em seu terminal front-end, normalmente sendo <code>http://localhost:3000</code>.</li>
+
+## 👥 Autores
+
+Projeto elaborado por [Felipe Coelho de Oliveira Campos](https://github.com/fco3lho), [Henrique Souza Fagundes](https://github.com/ohenriquesouza), [João Pedro Martins Espíndola](https://github.com/JoaoMEspindola?tab=repositories), [Lucas Farinelli Crivellari de Pinho](https://github.com/farinellizin), [Pedro Henrique Louback Campos](https://github.com/PedroLouback)
+
+Alunos da matéria de Banco de Dados 1 do curso de `Engenharia da Computação` no [CEFET-MG](https://www.cefetmg.br)
