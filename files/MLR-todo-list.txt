@@ -1,0 +1,22 @@
+USER (user_id (PK), name, phone, email, password, username)
+  
+TO_DO_LIST (list_id (PK), name, create_date, last_mod, user_last_mod, user_admin_id)
+
+	user_admin_id REFERENCES (USER)
+
+TASK (task_id (PK), description, register_date, expire_date, completed, user_id_created, list_id)
+
+	user_id_created REFERENCES (USER)
+	list_id REFERENCES (TO_DO_LIST)
+
+INVITATION (id_user_admin, id_user_invited, id_todo_list, accepted)
+
+	id_user_admin REFERENCES (USER)
+	id_user_invited REFERENCES (USER)
+	id_todo_list REFERENCES (TO-DO-LIST)
+
+USER_LIST (user_id, list_id, user_admin_id)
+
+	user_id REFERENCES (USER)
+	list_id REFERENCES (TO-DO-LIST)
+	user_admin_id REFERENCES (USER)

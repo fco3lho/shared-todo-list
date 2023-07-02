@@ -35,6 +35,12 @@ Este projeto consiste em uma lista de tarefas compartilhada que permite que voc�
     <li>Visualização e edição de listas de tarefas.</li>
 </ul>
 
+As tarefas requisitadas no arquivo em anexa estão presentes dentro da pasta <u><i>files</i></u> com seus respectivos documentos:<br>
+<b>Tarefa 01:</b> <i>DER-todo-list.jpeg</i>;<br>
+<b>Tarefa 02:</b> <i>MLR-todo-list.txt</i>;<br>
+<b>Tarefa 03:</b> <i>script.sql</i>;<br>
+<b>Tarefa 05:</b> <i>query.sql</i>;<br>
+
 ---
 
 ## 🔗 Como utilizar em sua máquina
