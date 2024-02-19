@@ -47,13 +47,11 @@ As tarefas requisitadas no arquivo em anexa estão presentes dentro da pasta <u>
 
 <ol>
   <li>Clone o repositório utilizando o comando <code>git clone https://github.com/fco3lho/shared-todo-list</code>.</li>
-  <li>Caso não possua, instale <strong>NodeJS</strong> e <strong>npm</strong> em sua máquina, de preferência versões acima de 18.0.0 e 9.0.0, respectivamente.</li>
+  <li>Caso não possua, instale <strong>Node.js</strong>, <strong>NPM</strong> e <strong>Doocker</strong> em sua máquina, de preferência versões acima de 18.0.0 e 9.0.0, para Node.js e NPM, respectivamente.</li>
   <li>Instale todas as dependências do front-end utilizando o comando <code>npm install</code> na pasta <code>/client</code>.</li>
   <li>Instale todas as dependências do back-end utilizando o comando <code>npm install</code> na pasta <code>/server</code>.</li>
-  <li>Crie o banco de dados MySQL com base no script SQL presente na pasta <code>/database</code>.</li>
-  <li>Inicie o front-end utilizando o comando <code>npm start</code> na pasta <code>/client</code>.</li>
-  <li>Inicie o back-end utilizando o comando <code>npm start</code> na pasta <code>/server</code>.</li>
-  <li>Se uma página não for aberta em seu navegador, abra a aplicação em seu navegador na porta mostrada em seu terminal front-end, normalmente sendo <code>http://localhost:3000</code>.</li>
+  <li>Inicie a aplicação utilizando o comando <code>docker-compose up -d</code> na pasta raíz do projeto.</li>
+  <li>Abra a aplicação na página <code>http://localhost:3000</code> para utilizá-la.</li>
 
 ## 👥 Autores
 

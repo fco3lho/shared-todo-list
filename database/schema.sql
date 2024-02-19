@@ -1,11 +1,5 @@
--- ----------------------------------------------------------------------
--- Banco de Dados
-
-CREATE DATABASE todolist;
+CREATE DATABASE IF NOT EXISTS todolist;
 USE todolist;
-
--- ----------------------------------------------------------------------
--- Definição do esquema de Banco de Dados
 
 CREATE TABLE user (
     user_id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -18,24 +12,24 @@ CREATE TABLE user (
 
 CREATE TABLE to_do_list (
     list_id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(32) NOT NULL, -- receber
-    create_date DATETIME NOT NULL, -- NOW
+    name VARCHAR(32) NOT NULL,
+    create_date DATETIME NOT NULL,
     last_mod DATETIME,
     user_last_mod_id INTEGER, 
-    user_admin_id INTEGER NOT NULL, -- receber
+    user_admin_id INTEGER NOT NULL,
     FOREIGN KEY (user_last_mod_id) REFERENCES user (user_id),
     FOREIGN KEY (user_admin_id) REFERENCES user (user_id)
 );
 
 CREATE TABLE task (
     task_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(32) NOT NULL, -- receber
-    description VARCHAR(128) NOT NULL, -- receber
-    register_date DATETIME NOT NULL, -- NOW
-    expire_date DATETIME NOT NULL, -- receber
-    completed BOOL NOT NULL, -- false
-    user_id_created INTEGER NOT NULL, -- receber
-    list_id INTEGER NOT NULL, -- params
+    name VARCHAR(32) NOT NULL,
+    description VARCHAR(128) NOT NULL,
+    register_date DATETIME NOT NULL,
+    expire_date DATETIME NOT NULL,
+    completed BOOL NOT NULL,
+    user_id_created INTEGER NOT NULL,
+    list_id INTEGER NOT NULL,
     FOREIGN KEY (user_id_created) REFERENCES user (user_id),
     FOREIGN KEY (list_id) REFERENCES to_do_list (list_id)
 );
