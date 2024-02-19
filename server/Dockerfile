@@ -1,12 +1,18 @@
 FROM node:latest
 
-WORKDIR /app
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-COPY package.json .
+RUN rm -rf ./node_modules
+RUN rm -rf package-lock.json
+
+COPY ./package.json .
 RUN npm install
 
 COPY . .
 
+RUN npm install pm2@latest -g
+
 EXPOSE 3001
 
-CMD ["npm", "start"]
+CMD ["pm2-runtime", "start", "index.js", "--name", "server"]

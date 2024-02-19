@@ -47,11 +47,11 @@ As tarefas requisitadas no arquivo em anexa estão presentes dentro da pasta <u>
 
 <ol>
   <li>Clone o repositório utilizando o comando <code>git clone https://github.com/fco3lho/shared-todo-list</code>.</li>
-  <li>Caso não possua, instale <strong>Node.js</strong>, <strong>NPM</strong> e <strong>Doocker</strong> em sua máquina, de preferência versões acima de 18.0.0 e 9.0.0, para Node.js e NPM, respectivamente.</li>
-  <li>Instale todas as dependências do front-end utilizando o comando <code>npm install</code> na pasta <code>/client</code>.</li>
-  <li>Instale todas as dependências do back-end utilizando o comando <code>npm install</code> na pasta <code>/server</code>.</li>
-  <li>Inicie a aplicação utilizando o comando <code>docker-compose up -d</code> na pasta raíz do projeto.</li>
-  <li>Abra a aplicação na página <code>http://localhost:3000</code> para utilizá-la.</li>
+
+  <li>Caso não possua, instale o <strong>Docker</strong> e o <strong>Docker Compose</strong> em sua máquina.</li>
+  <li>Execute o comando <code>docker compose up -d</code> na pasta raíz do projeto.</li>
+  <li>Após carregar todas as dependências e eecutar todos os comandos, verifique se os 3 containêres (client, server e database) estão em funcionamento, com o comando <code>docker ps</code>.</li>
+  <li>Se estiverem funcionando, abra a aplicação na página <code>http://localhost:3000</code> para utilizá-la.</li>
 
 ## 👥 Autores
 
